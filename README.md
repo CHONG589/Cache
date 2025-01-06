@@ -20,6 +20,12 @@
 
 ```
 mkdir build && cd build
+
+cmake ..
+
+make
+
+./main
 ```
 
 ## 测试结果
