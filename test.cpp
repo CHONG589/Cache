@@ -67,12 +67,16 @@ void testHotDataAccess() {
         for(int op = 0; op < OPERATIONS; ++op) {
             int key;
             if(op % 100 < 40) {
-                //40%热点数据
+                //40%的机会访问热点数据
+                //生成热点数据的key，热点数据的key范围为[0, 2]，共3个，
+                //所以无论怎么生成都是这三个。
                 key = gen() % HOT_KEYS;
             }
             else {
+                //冷数据的key，范围为[3, 5002]，共5000个。
                 key = HOT_KEYS + (gen() % COLD_KEYS);
             }
+            //将对应的key和value放入缓存中。
             std::string value = "value" + std::to_string(key);
             caches[i]->put(key, value);
         }
